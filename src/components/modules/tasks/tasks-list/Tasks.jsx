@@ -42,7 +42,7 @@ export default class Tasks extends React.Component {
             <div className="card">
                 <button type="button" className="btn btn-light"><Link to="/tasks/create">Add task</Link></button>
                 <div className="notes-list-wrapper d-flex">
-                    {this.state.tasks.map(task => <TaskCard task={task} key={task.id} onDeleteClick={this.onDelete} />)}
+                    {this.state.tasks.map(task => <TaskCard {...this.props} task={task} key={task.id} onDeleteClick={this.onDelete} />)}
                 </div>
             </div>
         );
