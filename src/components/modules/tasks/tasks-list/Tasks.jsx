@@ -20,7 +20,6 @@ export default class Tasks extends React.Component {
     componentDidMount() {
         this.taskService.getAllTasks().then(
             result => {
-                console.log(result);
                 this.setState({
                     tasks: result
                 });

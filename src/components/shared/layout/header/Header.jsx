@@ -23,7 +23,7 @@ export default class Header extends React.Component {
     }
 
     loadHeaderAccordingToUser() {
-        if (this.context.currentUser == null) {
+        if (this.context.currentUser == null && this.currentUser == null) {
             return (
                 (<div className="navbar-nav">
                     <Link className="nav-item nav-link" to="/register">Register</Link>
@@ -31,28 +31,26 @@ export default class Header extends React.Component {
                 </div>)
             );
         }
-        else if (this.context.currentUser !== null) {
-            if (this.context.currentUser.isAdmin) {
-                return (
-                    <div className="navbar-nav">
-                        <Link {...this.props} className="nav-item nav-link" to="/">Home</Link>
-                        <Link {...this.props} className="nav-item nav-link" to="/users">Users</Link>
-                        <Link {...this.props} className="nav-item nav-link" to="/tasks">Tasks</Link>
-                        <Link {...this.props} className="nav-item nav-link" to="/tasks/userTasks">MyTasks</Link>
-                        <Link {...this.props} className="nav-item nav-link" to="/login" onClick={this.logout}>Logout</Link>
-                    </div>
-                );
-            }
-            else {
-                return (
-                    <div className="navbar-nav">
-                        <Link {...this.props} className="nav-item nav-link" to="/">Home</Link>
-                        <Link {...this.props} className="nav-item nav-link" to="/tasks">Tasks</Link>
-                        <Link {...this.props} className="nav-item nav-link" to="/tasks/userTasks">MyTasks</Link>
-                        <Link {...this.props} className="nav-item nav-link" to="/login" onClick={this.logout}>Logout</Link>
-                    </div>
-                );
-            }
+        else if ((this.context.currentUser !== null && this.context.currentUser.isAdmin) || (this.currentUser != null && JSON.parse(this.currentUser).isAdmin)) {
+            return (
+                <div className="navbar-nav">
+                    <Link {...this.props} className="nav-item nav-link" to="/">Home</Link>
+                    <Link {...this.props} className="nav-item nav-link" to="/users">Users</Link>
+                    <Link {...this.props} className="nav-item nav-link" to="/tasks">Tasks</Link>
+                    <Link {...this.props} className="nav-item nav-link" to="/tasks/userTasks">MyTasks</Link>
+                    <Link {...this.props} className="nav-item nav-link" to="/login" onClick={this.logout}>Logout</Link>
+                </div>
+            );
+        }
+        else {
+            return (
+                <div className="navbar-nav">
+                    <Link {...this.props} className="nav-item nav-link" to="/">Home</Link>
+                    <Link {...this.props} className="nav-item nav-link" to="/tasks">Tasks</Link>
+                    <Link {...this.props} className="nav-item nav-link" to="/tasks/userTasks">MyTasks</Link>
+                    <Link {...this.props} className="nav-item nav-link" to="/login" onClick={this.logout}>Logout</Link>
+                </div>
+            );
         }
     }
 

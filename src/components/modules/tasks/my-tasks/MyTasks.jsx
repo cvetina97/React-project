@@ -32,8 +32,14 @@ export default class MyTasks extends React.Component {
 
     render() {
         return (
-            <div className="my-notes-wrapper" style={listStyles} >
-                {this.state.myTasks.map(task => <TaskCard task={task} key={task.id} />)}
+            <div className="card">
+                {
+                    this.state.myTasks ?
+                        <div className="my-notes-wrapper" style={listStyles} >
+                            {this.state.myTasks.map(task => <TaskCard {...this.props} task={task} key={task.id} />)}
+                        </div> :
+                        <div>This user has no tasks !</div>
+                }
             </div>
         );
     }
