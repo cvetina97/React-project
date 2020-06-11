@@ -7,7 +7,7 @@ const listStyles = {
     flexWrap: 'wrap'
 };
 
-export default class MyNotes extends React.Component {
+export default class MyTasks extends React.Component {
     constructor(props) {
         super(props);
 
@@ -20,7 +20,7 @@ export default class MyNotes extends React.Component {
     }
 
     componentDidMount() {
-        await this.taskService.getAllTasksByUserEmail(JSON.parse(this.loggedUser).email).then(
+        this.taskService.getAllTasksByUserEmail(JSON.parse(this.loggedUser).email).then(
             result => {
                 this.setState({
                     myTasks: result

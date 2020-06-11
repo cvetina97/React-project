@@ -17,7 +17,6 @@ export default class Login extends React.Component {
     }
 
     async handleLogin(event) {
-        debugger;
         //prevent default is called so that if user clicks submit not to reload the page
         event.preventDefault();
         //here we make object to be fullfilled with the list of elements that are in the form
@@ -27,8 +26,8 @@ export default class Login extends React.Component {
             let result = await firebase.auth().signInWithEmailAndPassword(email.value, password.value);
             if (result) {
                 let userModel = await this.userService.getUserByEmail(email.value);
-                debugger;
                 this.context.updateCurrentUser(userModel);
+                console.log(this.context);
                 this.props.history.push("/");
             }
         } catch (error) {

@@ -29,22 +29,19 @@ export default class TaskService {
 
     async getAllTasksByUserEmail(userEmail) {
         let allTasksArray = [];
-        await this.getUserIdByEmail(userEmail).get().then(
-            result => {
-                if (result) {
-                    let allTasks = this.tasks.where('userId', "==", result).get();
-                    if (allTasks) {
-                        allTasks.docs.forEach(doc => {
-                            let currentTask = new TaskResponseModel(doc.data().id, doc.data().title, doc.data().description, doc.data().assessment, doc.data().taskStatus, doc.data().userId);
-                            allTasksArray.push(currentTask);
-                        });
-                        return allTasksArray;
-                    } else {
-                        return null;
-                    }
-                }
+        let result = await this.getUserIdByEmail(userEmail);
+        if (result) {
+            let allTasks = await this.tasks.where('userId', "==", result).get();
+            if (allTasks.docs.length) {
+                allTasks.docs.forEach(doc => {
+                    let currentTask = new TaskResponseModel(doc.data().id, doc.data().title, doc.data().description, doc.data().assessment, doc.data().taskStatus, doc.data().userId);
+                    allTasksArray.push(currentTask);
+                });
+                return allTasksArray;
+            } else {
+                return null;
             }
-        );
+        }
     }
 
     async getAllTasks() {
@@ -63,21 +60,17 @@ export default class TaskService {
 
     async getUserIdByEmail(userEmail) {
         let userId = null;
-        await this.users.where('email', "==", userEmail).get().then(
-            result => {
-                if (result) {
-                    userId = result.docs[0].id;
-
-                    return userId;
-                } else {
-                    return null;
-                }
-            }
-        );
+        let result = await this.users.where('email', "==", userEmail).get();
+        if (result.docs.length > 0) {
+            userId = result.docs[0].id;
+            return userId;
+        } else {
+            return null;
+        }
     }
 
     async addTask(task) {
-        if(!task.taskStatus){
+        if (!task.taskStatus) {
             task.taskStatus = TaskStatus.Active;
         }
         const collectionId = this.tasks.doc().id;
