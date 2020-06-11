@@ -68,7 +68,7 @@ export default class Register extends React.Component {
                                         </div>
                                         <div className="col-md-12 ">
                                             <div className="form-group">
-                                                <p className="text-center"><a href="#" id="signin">Already have an account?</a></p>
+                                                <p className="text-center"><a href="/login" id="signin">Already have an account?</a></p>
                                             </div>
                                         </div>
                                     </form>

@@ -56,7 +56,7 @@ export default class Login extends React.Component {
                                     <input type="password" name="password" id="password" className="form-control" aria-describedby="emailHelp" placeholder="Enter Password" />
                                 </div>
                                 <div className="form-group">
-                                    <p className="text-center">By signing up you accept our <a href="#">Terms Of Use</a></p>
+                                    <p className="text-center">By signing up you accept our Terms Of Use </p>
                                 </div>
                                 <div className="col-md-12 text-center ">
                                     <button type="submit" className=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
@@ -69,13 +69,10 @@ export default class Login extends React.Component {
                                 </div>
                                 <div className="col-md-12 mb-3">
                                     <p className="text-center">
-                                        <a href="#" className="google btn mybtn"><i className="fa fa-google-plus">
-                                        </i> Signup using Google
+                                        <a href="/register" className="google btn mybtn"><i className="fa fa-google-plus">
+                                        </i>Don't have account? Then, Sign up here
                                             </a>
                                     </p>
-                                </div>
-                                <div className="form-group">
-                                    <p className="text-center">Don't have account? <a href="#" id="signup">Sign up here</a></p>
                                 </div>
                             </form>
                         </div>
